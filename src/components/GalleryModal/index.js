@@ -77,7 +77,6 @@ export const GalleryModal = ({ images }) => {
           <img src={CloseIcon} alt="Back Icon" />
         </button>
 
-        {/* </button> */}
         <div className={`d-flex justify-content-center ${styles.imgWrapper}`}>
           <img
             className="img-fluid"
