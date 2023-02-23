@@ -20,7 +20,6 @@ export const GalleryModal = ({ images }) => {
 
   useEffect(() => {
     const onKeyPress = (e) => {
-      console.log(e.key);
       switch (e.key) {
         case 'ArrowLeft':
           if (showPrevButton) {
