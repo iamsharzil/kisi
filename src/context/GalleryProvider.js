@@ -14,6 +14,7 @@ export const galleryTypes = {
 };
 
 const galleryReducer = (gallery, action) => {
+  console.log(action);
   switch (action.type) {
     case galleryTypes.UPDATE_ACTIVE_IMAGE_INDEX: {
       return {
