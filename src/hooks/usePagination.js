@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import photos from "../config/images/photos";
+import { useEffect, useState } from 'react';
+import photos from '../config/images/photos';
 import {
   FETCH_COUNT,
   FETCH_COUNT_MOBILE,
   IMAGES_START_INDEX,
   INITIAL_FETCH_COUNT,
-  INITIAL_FETCH_COUNT_MOBILE,
-} from "../constants/image";
-import useDevice from "./useDevice";
+  INITIAL_FETCH_COUNT_MOBILE
+} from '../constants/image';
+import useDevice from './useDevice';
 
 export default function usePagination({ imageIndex, index }) {
   const [images, setImages] = useState([]);
@@ -20,7 +20,7 @@ export default function usePagination({ imageIndex, index }) {
   // AS WE WILL HAVE AN API WITH PAGE COUNT / LIMIT FILTER
   useEffect(() => {
     // CHECK IF DEVICE IS BEING SET OR NOT
-    if (typeof isMobile !== "undefined") {
+    if (typeof isMobile !== 'undefined') {
       // IF YES, CHECK INITIAL IMAGE FETCH COUNT BASED ON DEVICE
       if (imageIndex === IMAGES_START_INDEX) {
         if (isMobile) setMaxFetchCount(INITIAL_FETCH_COUNT_MOBILE);
@@ -36,9 +36,7 @@ export default function usePagination({ imageIndex, index }) {
   }, [imageIndex, isMobile]);
 
   useEffect(() => {
-    setImages((prev) => [
-      ...new Set([...prev, ...photos.slice(index, index + maxFetchCount)]),
-    ]);
+    setImages((prev) => [...new Set([...prev, ...photos.slice(index, index + maxFetchCount)])]);
     setMore(Boolean(maxFetchCount + index < photos.length));
   }, [index, isMobile, maxFetchCount]);
 

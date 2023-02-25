@@ -1,14 +1,10 @@
-import { useEffect } from "react";
-import BackIcon from "../../svg/back.svg";
-import CloseIcon from "../../svg/close.svg";
-import { IMAGE_SIZES } from "../../constants/image";
-import {
-  galleryTypes,
-  useGallery,
-  useGalleryDispatch,
-} from "../../context/GalleryProvider";
-import Modal from "../Modal";
-import styles from "./index.module.css";
+import { useEffect } from 'react';
+import BackIcon from '../../svg/back.svg';
+import CloseIcon from '../../svg/close.svg';
+import { IMAGE_SIZES } from '../../constants/image';
+import { galleryTypes, useGallery, useGalleryDispatch } from '../../context/GalleryProvider';
+import Modal from '../Modal';
+import styles from './index.module.css';
 
 function GalleryModal({ images }) {
   const { activeImageIndex } = useGallery();
@@ -25,29 +21,29 @@ function GalleryModal({ images }) {
   useEffect(() => {
     const onKeyPress = (e) => {
       switch (e.key) {
-        case "ArrowLeft":
+        case 'ArrowLeft':
           if (showPrevButton) {
             dispatch({
               type: galleryTypes.UPDATE_ACTIVE_IMAGE_INDEX,
-              activeImageIndex: activeImageIndex - 1,
+              activeImageIndex: activeImageIndex - 1
             });
           }
 
           break;
 
-        case "ArrowRight":
+        case 'ArrowRight':
           if (showNextButton) {
             dispatch({
               type: galleryTypes.UPDATE_ACTIVE_IMAGE_INDEX,
-              activeImageIndex: activeImageIndex + 1,
+              activeImageIndex: activeImageIndex + 1
             });
           }
           break;
 
-        case "Escape":
+        case 'Escape':
           dispatch({
             type: galleryTypes.UPDATE_ACTIVE_IMAGE_INDEX,
-            activeImageIndex: null,
+            activeImageIndex: null
           });
           break;
 
@@ -56,10 +52,10 @@ function GalleryModal({ images }) {
       }
     };
 
-    document.addEventListener("keydown", onKeyPress);
+    document.addEventListener('keydown', onKeyPress);
 
     return () => {
-      document.removeEventListener("keydown", onKeyPress);
+      document.removeEventListener('keydown', onKeyPress);
     };
   }, [activeImageIndex, dispatch, showNextButton, showPrevButton]);
 
@@ -68,61 +64,61 @@ function GalleryModal({ images }) {
       onClose={() =>
         dispatch({
           type: galleryTypes.UPDATE_ACTIVE_IMAGE_INDEX,
-          activeImageIndex: null,
+          activeImageIndex: null
         })
       }
     >
       <div className={styles.modalContentWrapper}>
         <button
-          type='button'
+          type="button"
           className={`resetButton ${styles.backButtonWrapper}`}
           onClick={() =>
             dispatch({
               type: galleryTypes.UPDATE_ACTIVE_IMAGE_INDEX,
-              activeImageIndex: null,
+              activeImageIndex: null
             })
           }
         >
-          <img src={CloseIcon} alt='Back Icon' />
+          <img src={CloseIcon} alt="Back Icon" />
         </button>
 
         <div className={`d-flex justify-content-center ${styles.imgWrapper}`}>
           <img
-            className='img-fluid'
+            className="img-fluid"
             src={src}
             alt={`Taken by ${images[activeImageIndex].user.name}`}
           />
         </div>
 
-        <div className='d-flex align-items-center justify-content-center'>
+        <div className="d-flex align-items-center justify-content-center">
           <button
-            type='button'
+            type="button"
             className={`resetButton ${styles.galleryControl} ${
-              !showPrevButton ? styles.hidden : ""
+              !showPrevButton ? styles.hidden : ''
             }`}
             onClick={() =>
               dispatch({
                 type: galleryTypes.UPDATE_ACTIVE_IMAGE_INDEX,
-                activeImageIndex: activeImageIndex - 1,
+                activeImageIndex: activeImageIndex - 1
               })
             }
           >
-            <img src={BackIcon} alt='' />
+            <img src={BackIcon} alt="" />
           </button>
           )
           <button
-            type='button'
-            className={`resetButton ${styles.galleryControl} ${
-              styles.galleryControlNext
-            } ${!showNextButton ? styles.hidden : ""}`}
+            type="button"
+            className={`resetButton ${styles.galleryControl} ${styles.galleryControlNext} ${
+              !showNextButton ? styles.hidden : ''
+            }`}
             onClick={() =>
               dispatch({
                 type: galleryTypes.UPDATE_ACTIVE_IMAGE_INDEX,
-                activeImageIndex: activeImageIndex - 1,
+                activeImageIndex: activeImageIndex - 1
               })
             }
           >
-            <img src={BackIcon} alt='' />
+            <img src={BackIcon} alt="" />
           </button>
           )
         </div>

@@ -1,20 +1,20 @@
-import React, { Fragment, useLayoutEffect, useRef } from "react";
-import ReactDom from "react-dom";
-import classes from "./index.module.css";
+import React, { Fragment, useLayoutEffect, useRef } from 'react';
+import ReactDom from 'react-dom';
+import classes from './index.module.css';
 
 function Backdrop({ onClose, scroll }) {
   const ref = useRef();
 
   useLayoutEffect(() => {
-    const body = document.querySelector("body");
+    const body = document.querySelector('body');
     if (scroll) {
-      body.style.overflow = "hidden";
+      body.style.overflow = 'hidden';
     } else {
-      body.style.overflow = "auto";
+      body.style.overflow = 'auto';
     }
 
     return () => {
-      body.style.overflow = "auto";
+      body.style.overflow = 'auto';
     };
   }, [scroll]);
 
@@ -27,7 +27,7 @@ function ModalOverlay({ children }) {
   return <div className={classes.modal}>{children}</div>;
 }
 
-const modalPlaceholderElement = document.getElementById("modal");
+const modalPlaceholderElement = document.getElementById('modal');
 
 function Modal({ onClose, children }) {
   return (
@@ -40,10 +40,7 @@ function Modal({ onClose, children }) {
       )}
 
       {/* Use createPortal to render the child at the placeholder */}
-      {ReactDom.createPortal(
-        <ModalOverlay>{children}</ModalOverlay>,
-        modalPlaceholderElement
-      )}
+      {ReactDom.createPortal(<ModalOverlay>{children}</ModalOverlay>, modalPlaceholderElement)}
     </>
   );
 }
