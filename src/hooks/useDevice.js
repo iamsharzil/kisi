@@ -1,15 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-export const useDevice = () => {
+const useDevice = () => {
   const [isMobile, setMobile] = useState();
 
   useEffect(() => {
-    const userAgent = typeof window.navigator === 'undefined' ? '' : navigator.userAgent;
+    const userAgent =
+      typeof window.navigator === "undefined" ? "" : navigator.userAgent;
     const mobile = Boolean(
-      userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i)
+      userAgent.match(
+        /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
+      )
     );
     setMobile(mobile);
   }, []);
 
   return { isMobile };
 };
+
+export default useDevice;

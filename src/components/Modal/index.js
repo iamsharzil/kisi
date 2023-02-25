@@ -1,45 +1,51 @@
-import React, { Fragment, useLayoutEffect, useRef } from 'react';
-import ReactDom from 'react-dom';
-import classes from './index.module.css';
+import React, { Fragment, useLayoutEffect, useRef } from "react";
+import ReactDom from "react-dom";
+import classes from "./index.module.css";
 
-const Backdrop = ({ onClose, scroll }) => {
+function Backdrop({ onClose, scroll }) {
   const ref = useRef();
 
   useLayoutEffect(() => {
-    const body = document.querySelector('body');
+    const body = document.querySelector("body");
     if (scroll) {
-      body.style.overflow = 'hidden';
+      body.style.overflow = "hidden";
     } else {
-      body.style.overflow = 'auto';
+      body.style.overflow = "auto";
     }
 
     return () => {
-      body.style.overflow = 'auto';
+      body.style.overflow = "auto";
     };
   }, [scroll]);
 
-  return <div ref={ref} className={classes.backdrop} onClick={onClose}></div>;
-};
+  // TODO: FIX A11y
+  // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+  return <div ref={ref} className={classes.backdrop} onClick={onClose} />;
+}
 
-const ModalOverlay = ({ children }) => {
+function ModalOverlay({ children }) {
   return <div className={classes.modal}>{children}</div>;
-};
+}
 
-const modalPlaceholderElement = document.getElementById('modal');
+const modalPlaceholderElement = document.getElementById("modal");
 
-const Modal = ({ onClose, children }) => {
+function Modal({ onClose, children }) {
   return (
-    <Fragment>
+    <>
       {/* Use createPortal to render the child at the placeholder */}
       {ReactDom.createPortal(
+        // eslint-disable-next-line no-restricted-globals
         <Backdrop scroll={scroll} onClose={onClose} />,
         modalPlaceholderElement
       )}
 
       {/* Use createPortal to render the child at the placeholder */}
-      {ReactDom.createPortal(<ModalOverlay>{children}</ModalOverlay>, modalPlaceholderElement)}
-    </Fragment>
+      {ReactDom.createPortal(
+        <ModalOverlay>{children}</ModalOverlay>,
+        modalPlaceholderElement
+      )}
+    </>
   );
-};
+}
 
 export default Modal;

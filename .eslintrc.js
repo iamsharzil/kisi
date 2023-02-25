@@ -1,23 +1,26 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
   },
-  extends: [
-    'plugin:react-hooks/recommended',
-    'plugin:react/recommended',
-    'standard-with-typescript',
-    'plugin:prettier/recommended'
-  ],
+  extends: ["plugin:react/recommended", "airbnb", "prettier"],
   overrides: [],
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module'
+    ecmaVersion: "latest",
+    sourceType: "module",
   },
-  plugins: ['react'],
+  plugins: ["react"],
   rules: {
-    'react/react-in-jsx-scope': 'off',
-    semi: [2, 'always'],
-    'react/prop-types': 0
-  }
+    "react/react-in-jsx-scope": "off",
+    semi: [2, "always"],
+    "react/prop-types": 0,
+    "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
+    "react/function-component-definition": [
+      "error",
+      {
+        namedComponents: "function-declaration",
+        unnamedComponents: "arrow-function",
+      },
+    ],
+  },
 };
