@@ -1,0 +1,14 @@
+.title {
+  font-weight: bold;
+  font-size: 4rem;
+  margin-top: 3rem;
+
+  @media only screen and (max-width: 675px) {
+    font-size: 3rem;
+  }
+}
+
+.toggleListPlaceHolder {
+  visibility: hidden;
+  display: none;
+}

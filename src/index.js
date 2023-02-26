@@ -1,13 +1,22 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
+
 import App from './App';
-import { GalleryProvider } from './context/GalleryProvider';
+
+import ErrorBoundary from './components/error-boundary';
+
+import { GalleryProvider } from './context/gallery-provider';
+
+import './index.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <StrictMode>
-    <GalleryProvider>
-      <App />
-    </GalleryProvider>
+    <ErrorBoundary>
+      <GalleryProvider>
+        <App />
+      </GalleryProvider>
+    </ErrorBoundary>
   </StrictMode>
 );

@@ -1,8 +1,8 @@
 import React, { Fragment, useLayoutEffect, useRef } from 'react';
 import ReactDom from 'react-dom';
-import classes from './index.module.css';
+import styles from './index.module.scss';
 
-function Backdrop({ onClose, scroll }) {
+const Backdrop = ({ onClose, scroll }) => {
   const ref = useRef();
 
   useLayoutEffect(() => {
@@ -20,29 +20,25 @@ function Backdrop({ onClose, scroll }) {
 
   // TODO: FIX A11y
   // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-  return <div ref={ref} className={classes.backdrop} onClick={onClose} />;
-}
+  return <div ref={ref} className={styles.backdrop} onClick={onClose} />;
+};
 
-function ModalOverlay({ children }) {
-  return <div className={classes.modal}>{children}</div>;
-}
+const ModalOverlay = ({ children }) => <div className={styles.modal}>{children}</div>;
 
 const modalPlaceholderElement = document.getElementById('modal');
 
-function Modal({ onClose, children }) {
-  return (
-    <>
-      {/* Use createPortal to render the child at the placeholder */}
-      {ReactDom.createPortal(
-        // eslint-disable-next-line no-restricted-globals
-        <Backdrop scroll={scroll} onClose={onClose} />,
-        modalPlaceholderElement
-      )}
+const Modal = ({ onClose, children }) => (
+  <>
+    {/* Use createPortal to render the child at the placeholder */}
+    {ReactDom.createPortal(
+      // eslint-disable-next-line no-restricted-globals
+      <Backdrop scroll={scroll} onClose={onClose} />,
+      modalPlaceholderElement
+    )}
 
-      {/* Use createPortal to render the child at the placeholder */}
-      {ReactDom.createPortal(<ModalOverlay>{children}</ModalOverlay>, modalPlaceholderElement)}
-    </>
-  );
-}
+    {/* Use createPortal to render the child at the placeholder */}
+    {ReactDom.createPortal(<ModalOverlay>{children}</ModalOverlay>, modalPlaceholderElement)}
+  </>
+);
 
 export default Modal;
