@@ -1,0 +1,7 @@
+const galleryTypes = {
+  UPDATE_ACTIVE_IMAGE_INDEX: 'UPDATE_ACTIVE_IMAGE_INDEX',
+  UPDATE_LOADING_STATE: 'UPDATE_LOADING_STATE',
+  UPDATE_DATA: 'UPDATE_DATA'
+};
+
+export default galleryTypes;

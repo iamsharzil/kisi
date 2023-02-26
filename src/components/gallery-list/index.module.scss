@@ -1,0 +1,13 @@
+.galleryRow {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5rem 0;
+
+  @media only screen and (max-width: 675px) {
+    margin: 3rem 0;
+  }
+
+  @media only screen and (max-width: 1024px) and (min-width: 676px) {
+    font-size: 5rem;
+  }
+}
