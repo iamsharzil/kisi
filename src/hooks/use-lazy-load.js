@@ -18,8 +18,8 @@ const useLazyLoad = ({ triggerRef, fetchData, options }) => {
       setLoading(true);
       try {
         const receivedData = await fetchData();
-        setLoading(false);
         setData(receivedData);
+        setLoading(false);
       } catch (error) {
         setLoading(false);
       }

@@ -51,13 +51,23 @@
   display: block;
   width: 300px;
   height: 300px;
+
+  @media only screen and (max-width: 675px) {
+    width: 400px;
+    height: 400px;
+  }
+
+  @media only screen and (max-width: 1024px) and (min-width: 676px) {
+    width: 250px;
+    height: 250px;
+  }
 }
 
 .shine {
   background: #f6f7f8;
   background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
   background-repeat: no-repeat;
-  background-size: 800px 300px;
+  background-size: 300px 300px;
   display: inline-block;
   position: relative;
 
@@ -66,6 +76,14 @@
   animation-iteration-count: infinite;
   animation-name: placeholderShimmer;
   animation-timing-function: linear;
+
+  @media only screen and (max-width: 675px) {
+    background-size: 400px 400px;
+  }
+
+  @media only screen and (max-width: 1024px) and (min-width: 676px) {
+    background-size: 250px 250px;
+  }
 }
 
 @keyframes placeholderShimmer {
